@@ -27,17 +27,6 @@ class User extends CI_Controller {
 		$this->load->helper('form');
     }
 
-	public function index()
-	{
-		$this->load->model('user_model');
-		$this->load->model('welome_model');
-		$this->load->helper('url');
-		$this->load->helper('form');
-
-		$data = $this->welome_model->abc();
-		$this->load->view('welcome_message', $data);
-	}
-
 	public function log_in(){
 		$accounts = $this->user_model->get_admin_accounts();
 		//var_dump($accounts);
@@ -64,9 +53,11 @@ class User extends CI_Controller {
 	}
 
 	public function log_out(){
-		$this->load->model('user_model');
-		$this->user_model->log_out($_SESSION['user']);
-		session_destroy();
+		if(isset($_SESSION['logged_in'])){
+			$this->load->model('user_model');
+			$this->user_model->log_out($_SESSION['user']);
+			session_destroy();
+		}
 		redirect('../');
 	}
 
@@ -106,7 +97,7 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 		$flights = $this->flight_model->get_all_flight_data();
 
 		foreach($flights as $flight){
-			if($flight['flight_id'] == $_POST['flight_id']){
+			if($flight->FLIGHT_ID == $_POST['flight_id']){
 				$_SESSION['error_message_flight'] = "Flight ID already exists";
 				exit;
 			}
@@ -119,6 +110,7 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 										"time_departure"=> $this->convert_datetime_format($_POST['departure_time']),
 										"time_arrival"=> $this->convert_datetime_format($_POST['departure_time'])
 										]);
+		$_SESSION["status"] = "none";
 		redirect("../");
 
 
@@ -127,6 +119,7 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 //		var_dump($_POST);
 	}
 
+
 	public function convert_datetime_format($datetime){
 		$datetime = explode('T', $datetime);
 		$datetime = $datetime[0] . ' ' . $datetime[1];
@@ -134,10 +127,25 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 		return $datetime;
 	}
 
-	public function edit_flight_visibility(){
-		//$flight['flight_id'] = $_POST[''];
+	public function edit_flight(){
+		$this->user_model->update_flight(["flight_id"=>$_POST['flight_id'],
+										"slot"=> $_POST['slot'],
+										"destination"=>	$_POST['destination'],
+										"origin"=>$_POST['origin'],
+										"time_departure"=> $this->convert_datetime_format($_POST['departure_time']),
+										"time_arrival"=> $this->convert_datetime_format($_POST['departure_time']),
+										"visibility"=>$_POST['status']
+										]);	
+		
+		$_SESSION['status'] = 'none';
+		redirect('../viewer/edit_flight_view');
 	}
 
+	public function delete_flight(){
+		$this->user_model->delete_flight($_POST['delete']);
+		$_SESSION['status'] = 'none';
+		redirect('../viewer/edit_flight_view');
+	}
 }
 
 /* End of file welcome.php */

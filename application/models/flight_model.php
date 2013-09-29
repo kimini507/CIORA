@@ -11,7 +11,7 @@ class Flight_model extends CI_Model{
     }
 
     public function get_all_flight_data(){
-    	$res = $this->db->query("SELECT * FROM flight")->result();
+    	$res = $this->db->query('SELECT flight_id, slot, destination, origin, TO_CHAR(time_departure, ' . "'YYYY-MM-DD HH24:MM')" .'"TIME_DEPARTURE", TO_CHAR(time_arrival, ' . "'YYYY-MM-DD HH24:MM')" .'"TIME_ARRIVAL", status FROM flight ORDER BY flight_id')->result();
     	return $res;
     }
 
@@ -24,6 +24,7 @@ class Flight_model extends CI_Model{
     	$res = $this->db->query("SELECT * FROM flight WHERE status = 'NV'")->result();
     	return $res;
     }
+
 
 }
 

@@ -51,16 +51,22 @@ class User_model extends CI_Model{
     							"'NV')");
     }
 
-    function make_flight_visible($flight){
+    function update_flight($flight){
     	$this->db->query("UPDATE flight
-    						SET status = 'VB'
-    						WHERE flight_id = " . $flight['flight_id']
-    						);
+    						SET
+    						slot = " . $flight['slot'] . ",
+    						origin = '" . $flight['origin'] . "',
+    						destination = '" . $flight['destination'] . "',
+    						time_departure = TO_TIMESTAMP('" . $flight['time_departure'] . "', 'YYYY-MM-DD HH24:MI'),
+    						time_arrival = TO_TIMESTAMP('" . $flight['time_arrival'] . "', 'YYYY-MM-DD HH24:MI'),
+    						status = '" . $flight['visibility'] . "'
+    						WHERE flight_id = '" . $flight['flight_id'] . "'
+    						");
     }
 
-
-
-
+    function delete_flight($flight_id){
+    	$this->db->query("DELETE FROM flight WHERE flight_id = '$flight_id'");
+    }
 }
 
 ?>
