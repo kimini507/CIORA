@@ -1,11 +1,11 @@
 <script type="text/javascript">
 	window.onload=function () {
-		login_form.admin.onblur=validate_admin;
-		login_form.admin_pass.onblur=validate_admin_pass;
+		login_form.username.onblur=validate_admin;
+		login_form.password.onblur=validate_admin_pass;
 		login_form.onsubmit=submit_all;
 	}
 	function validate_admin () {
-		str=login_form.admin.value;
+		var str=login_form.username.value;
 		if(str=="") msg=" Input is required."
 		else if(!str.match(/^[A-Za-z0-9]{1,32}$/)) msg=" Max of 32 characters only.";
 		else{
@@ -16,7 +16,7 @@
 		document.getElementsByName('help_admin')[0].innerHTML=msg;
 	}
 	function validate_admin_pass () {
-		str=login_form.admin_pass.value;
+		var str=login_form.password.value;
 		if(str=="") msg=" Input is required."
 		else if(!str.match(/^[A-Za-z0-9]{1,32}$/)) msg=" Max of 32 characters only.";
 		else{
@@ -27,7 +27,7 @@
 		document.getElementsByName('help_admin_pass')[0].innerHTML=msg;
 	}
 	function submit_all () {
-		// pass values here...
+		
 	}
 </script>
 

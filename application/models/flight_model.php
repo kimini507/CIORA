@@ -11,17 +11,17 @@ class Flight_model extends CI_Model{
     }
 
     public function get_all_flight_data(){
-    	$res = $this->db->query("SELECT * FROM flights")->result();
+    	$res = $this->db->query("SELECT * FROM flight")->result();
     	return $res;
     }
 
     public function get_visible_flight_data(){
-    	$res = $this->db->query("SELECT * FROM flights WHERE status = 'VB'")->result();
+    	$res = $this->db->query("SELECT * FROM flight WHERE status = 'VB'")->result();
     	return $res;
     }
 
     public function get_invisible_flight_data(){
-    	$res = $this->db->query("SELECT * FROM flights WHERE status = 'NV'")->result();
+    	$res = $this->db->query("SELECT * FROM flight WHERE status = 'NV'")->result();
     	return $res;
     }
 
