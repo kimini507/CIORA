@@ -1,0 +1,21 @@
+ADMIN
+	-login 				CHECK
+	-logout				CHECK
+	-add flight			CHECK
+	-edit flight(visibility, fare, time_departure, time_arrival, slots)
+	-delete flight
+
+
+
+CUSTOMER/BOOKING
+	-search flight
+	-book slot
+		:generate flight passcode
+		:save to db
+		:make pdf
+	
+	-cancel flight
+		:using passcode
+
+	
+	
