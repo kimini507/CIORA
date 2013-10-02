@@ -1,14 +1,14 @@
+<script type="text/javascript">
 
+}
+</script>
 <div>
 <form action="" method="post">
-<table>
-	<tr>
-		<td><input type="radio" name="flight_type" value="rt"/>Round Trip</td>
-		<td><input type="radio" name="flight_type" value="ow"/>One Way</td>
-	</tr>
-	<tr>
-		<td>
-<select name="Origin">
+
+		<input type="radio" name="flight_type" value="rt" />Round Trip
+		<input type="radio" name="flight_type" value="ow"/>One Way
+<br/>		
+<select name="Origin" required>
 	<option value="">Origin</option>
 	<?php
 		$places = array("Bacolod","Boracay","Butuan","Cagayan de Oro","Camiguin","Cauayan","Cebu","Clark","Coron","Cotabato","Davao","Dipolog","Dumaguete","General Santos","Iloilo","Kalibo","Laoag","Legazpi","Manila","Masbate","Naga","Ozamiz","Pagadian","Puerto Princesa","Roxas","San Jose (Occ. Mindoro)","Siargao","Tacloban","Tagbilaran","Tawi-Tawi","Tuguegarao","Virac","Zamboanga");
@@ -16,9 +16,9 @@
 		echo '<option value="'.$places[$i].'">'.$places[$i].'</option>';
 		}
 	?>
-</select></td>
-<td>
-<select  name="Destination">
+</select>
+<br/>
+<select  name="Destination" required>
 	<option value="">Destination</option>
 	<?php
 		for($i=0;$i<33;$i++){
@@ -26,26 +26,13 @@
 		}
 	?>
 </select>
-</td>
-</tr>
-<tr>
-<td>
+<br/>
 Departure Date:
-</td>
-<td>
-<input type="date" name ="ddate"/>
-</td>
-</tr>
-<tr>
-	<td>
-Return Date:
-	</td>
-	<td>
+<input type="date" name ="ddate" required/>
+<br/>
+Return Date:	
 <input type="date" name ="rdate"/>
-	</td>
-</tr>
-<tr>
-	<td>
+<br/>
 Adult (12+ years)
 <select name="adult">
 	<?php
@@ -55,8 +42,8 @@ Adult (12+ years)
 
 	?>
 </select>
-</td>
-<td>
+
+
 Child (2-11 years)
 <select name="child">
 	<?php
@@ -66,8 +53,8 @@ Child (2-11 years)
 
 	?>
 </select>
-</td>
-<td>
+
+
 Infant (-2 years)
 <select namee="infant">
 	<?php
@@ -77,14 +64,10 @@ Infant (-2 years)
 
 	?>
 </select>
-</td>
-</tr>
-<tr>
-	<td>
+<br/>	
 <input type="submit" value="Search">
-</td>
-</tr>
-</table>
+
+
 
 </form>
 </div>

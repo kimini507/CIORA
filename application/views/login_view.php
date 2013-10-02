@@ -2,7 +2,6 @@
 	window.onload=function () {
 		login_form.username.onblur=validate_admin;
 		login_form.password.onblur=validate_admin_pass;
-		login_form.onsubmit=submit_all;
 	}
 	function validate_admin () {
 		var str=login_form.username.value;
@@ -26,15 +25,19 @@
 		}
 		document.getElementsByName('help_admin_pass')[0].innerHTML=msg;
 	}
-	function submit_all () {
-		
+	function validate_username_password() {
+		if(validate_admin() && validate_admin_pass){
+			return true;
+		}else{
+			return false;
+		}
 	}
 </script>
 
 <div>
 	<fieldset>
 		<legend> Administration </legend>
-		<form action = "/user/log_in" name="login_form" method="post">
+		<form onsubmit="return  validate_username_password()" action = "/user/log_in" name="login_form" method="post">
 			<label>Username: <input type="text" name="username" required /></label>
 			<span name="help_admin"></span><br/>
 			<label>Password: <input type="password" name="password" required/></label>
