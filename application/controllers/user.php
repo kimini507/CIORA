@@ -166,6 +166,10 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
         $data["flight_id"] = $this->input->post("flight_id");
         $data["origin"] = $this->input->post("origin");
         $data["destination"] = $this->input->post("destination");
+        $data["time_departure"] = $this->input->post("time_departure");
+        $data["arrival"] = $this->input->post("arrival");
+
+
         $_SESSION["search"] = $data;
 
         $flights = $this->flight_model->get_flights_with($data);

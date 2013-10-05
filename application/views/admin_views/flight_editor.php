@@ -7,7 +7,7 @@
         <input type = "text" id = "fid_search" name="via_id" placeholder="Flight Id"/>
         <input type = "text" id = "forigin_search" name="via_origin" placeholder="Origin"/>
         <input type = "text" id = "fdestination_search" name="via_destination" placeholder="Destination"/>
-        <input type = "submit" id = "search_submit" name = "search" value="Search"/>
+        <input type = "submit" id = "search_admin_submit" name = "search" value="Search"/>
     </form>
 </div>
 

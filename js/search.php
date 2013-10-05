@@ -3,25 +3,45 @@
     flightData = <?php echo json_encode(["flights"=>$flights]);?>;
     //console.log(flightData);
     $(document).ready(function(){
-    $("#search_submit").click(function(e){
-    update_flights();
-    e.preventDefault();
-    })
+        $("#search_admin_submit").click(function(e){
+            update_flights("admin_edit");
+            e.preventDefault();
+        });
     });
 
-    function update_flights(){
+    function update_flights(option){
 
-        data2 = {"flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val()};
-        $.post('/user/get_flights',data2, function(data) {
+        switch(option){
+            case "admin_edit":
+                data2 = {"flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val()};
+                $.post('/user/get_flights',data2, function(data) {
 
-            data = JSON.parse(data);
-            flightData = data;
-            for(i = 0, j = data.flights.length; i < j; i++){
-                data.flights[i].TIME_ARRIVAL = data.flights[i].TIME_ARRIVAL.split(' ').join('T');
-                data.flights[i].TIME_DEPARTURE = data.flights[i].TIME_DEPARTURE.split(' ').join('T');
-            }
-            update_view(data);
-        });
+                    data = JSON.parse(data);
+                    flightData = data;
+                    for(i = 0, j = data.flights.length; i < j; i++){
+                        data.flights[i].TIME_ARRIVAL = data.flights[i].TIME_ARRIVAL.split(' ').join('T');
+                        data.flights[i].TIME_DEPARTURE = data.flights[i].TIME_DEPARTURE.split(' ').join('T');
+                    }
+                    update_view(data);
+                });
+                break;
+            case "customer":
+                data2 = {"flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
+                $.post('/user/get_flights',data2, function(data) {
+
+                    data = JSON.parse(data);
+                    flightData = data;
+                    for(i = 0, j = data.flights.length; i < j; i++){
+                        data.flights[i].TIME_ARRIVAL = data.flights[i].TIME_ARRIVAL.split(' ').join('T');
+                        data.flights[i].TIME_DEPARTURE = data.flights[i].TIME_DEPARTURE.split(' ').join('T');
+                    }
+                    update_view2(data);
+                });
+        }
+    }
+
+    function update_view2(data){
+        console.log(data);
     }
 
     function update_view(data){
