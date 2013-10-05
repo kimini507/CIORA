@@ -45,6 +45,10 @@ class Viewer extends CI_Controller {
 		}
 	}
 
+    public function login_view(){
+        $this->load->view("login_view.php");
+    }
+
 	public function convert_datetime_format_reverse($datetime){
 		$datetime = explode(' ', $datetime);
 		$datetime = $datetime[0] . 'T' . $datetime[1];

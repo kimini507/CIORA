@@ -6,7 +6,7 @@
 	}
 
 	if(!isset($_SESSION['logged_in'])){
-		include("login_view.php");
+		include("site_nav.php");
 	}else{
 		/*put what the admin can see here
 			e.g. Nav bar for the admin	
