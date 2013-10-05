@@ -1,8 +1,11 @@
 <script>
     places = ["Bacolod","Boracay","Butuan","Cagayan de Oro","Camiguin","Cauayan","Cebu","Clark","Coron","Cotabato","Davao","Dipolog","Dumaguete","General Santos","Iloilo","Kalibo","Laoag","Legazpi","Manila","Masbate","Naga","Ozamiz","Pagadian","Puerto Princesa","Roxas","San Jose (Occ. Mindoro)","Siargao","Tacloban","Tagbilaran","Tawi-Tawi","Tuguegarao","Virac","Zamboanga"];
-    flightData = <?php echo json_encode(["flights"=>$flights]);?>;
     //console.log(flightData);
     $(document).ready(function(){
+        $("#search_customer_submit").click(function(e){
+            update_flights("customer");
+            e.preventDefault();
+        });
         $("#search_admin_submit").click(function(e){
             update_flights("admin_edit");
             e.preventDefault();
@@ -17,7 +20,7 @@
                 $.post('/user/get_flights',data2, function(data) {
 
                     data = JSON.parse(data);
-                    flightData = data;
+                    flightData = "" + data;
                     for(i = 0, j = data.flights.length; i < j; i++){
                         data.flights[i].TIME_ARRIVAL = data.flights[i].TIME_ARRIVAL.split(' ').join('T');
                         data.flights[i].TIME_DEPARTURE = data.flights[i].TIME_DEPARTURE.split(' ').join('T');
@@ -41,7 +44,53 @@
     }
 
     function update_view2(data){
-        console.log(data);
+        $("#flights_div").html(
+            "<form name='booking_form'>" +
+            "<table border = 1>" +
+                "<tr>" +
+                    "<td></td>" +
+                    "<td>FLIGHT ID </td>" +
+                    "<td>SLOTS </td>" +
+                    "<td>ORIGIN </td>" +
+                    "<td>DESTINATION </td>" +
+                    "<td>TIME DEPARTURE </td>" +
+                    "<td>TIME ARRIVAL </td>" +
+                "</tr>"+
+            "</table>" +
+            "<input type = 'submit' name = 'book_submit' value = 'Book'/>" +
+            "</form>"
+        )
+
+        for(i = 0, j = data.flights.length; i<j; i++){
+            $("#flights_div  table").append(
+                "<tr>" +
+                    "<td>" +
+                    "<input type = 'radio' name='flight_choice' value = '' " + data.flights[i].FLIGHT_ID +
+                    "</td>" +
+                    "<td>" +
+                    data.flights[i].FLIGHT_ID +
+                    "</td>" +
+                    "<td>" +
+                    data.flights[i].SLOT +
+                    "</td>" +
+                    "<td>" +
+                    data.flights[i].ORIGIN +
+                    "</td>" +
+                    "<td>" +
+                    data.flights[i].DESTINATION +
+                    "</td>" +
+                    "<td>" +
+                    data.flights[i].TIME_DEPARTURE +
+                    "</td>" +
+                    "<td>" +
+                    data.flights[i].TIME_ARRIVAL +
+                    "</td>" +
+                "</tr>"
+            );
+        }
+
+        $("#flights_div").append(
+        );
     }
 
     function update_view(data){

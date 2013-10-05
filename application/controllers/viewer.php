@@ -55,7 +55,12 @@ class Viewer extends CI_Controller {
 		// $datetime;
 
 		return $datetime;
-	}	
+	}
+
+    public function booking_view(){
+        $res = $this->input->post("result");
+        echo $res;
+    }
 }
 
 /* End of file welcome.php */
