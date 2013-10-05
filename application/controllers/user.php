@@ -99,6 +99,8 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 		foreach($flights as $flight){
 			if($flight->FLIGHT_ID == $_POST['flight_id']){
 				$_SESSION['error_message_flight'] = "Flight ID already exists";
+                $_SESSION["status"] = "none";
+                redirect("../viewer/add_flight_view");
 				exit;
 			}
 		}
@@ -111,7 +113,7 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 										"time_arrival"=> $this->convert_datetime_format($_POST['departure_time'])
 										]);
 		$_SESSION["status"] = "none";
-		redirect("../");
+		redirect("../viewer/add_flight_view");
 
 
 
@@ -146,6 +148,33 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 		$_SESSION['status'] = 'none';
 		redirect('../viewer/edit_flight_view');
 	}
+
+    public function convert_datetime_format_reverse($datetime){
+        $datetime = explode(' ', $datetime);
+        $datetime = $datetime[0] . 'T' . $datetime[1];
+        // $datetime;
+
+        return $datetime;
+    }
+
+    /*----------------------------SEARCH FLIGHTS----------------------*/
+
+    public function get_flights(){
+
+        $this->input->post("flight_id");
+
+        $data["flight_id"] = $this->input->post("flight_id");
+        $data["origin"] = $this->input->post("origin");
+        $data["destination"] = $this->input->post("destination");
+        $_SESSION["search"] = $data;
+
+        $flights = $this->flight_model->get_flights_with($data);
+
+        $res["flights"] = $flights;
+        $res = json_encode($res);
+
+        echo $res;
+    }
 }
 
 /* End of file welcome.php */
