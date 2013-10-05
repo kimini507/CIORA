@@ -5,7 +5,6 @@ class Viewer extends CI_Controller {
 	function __construct(){
 
 		parent::__construct();
-		session_start();
 		$this->load->model('home_model');
 		$this->load->model('user_model');
 		$this->load->model('flight_model');
@@ -16,9 +15,10 @@ class Viewer extends CI_Controller {
 	}
 
 	public function add_flight_view(){
+        $this->load->view("/includes/header");
+
 		if(isset($_SESSION['logged_in'])){
 			$_SESSION['status'] = "flight_adder";
-            $this->load->view("/includes/header");
 			$this->load->view("/admin_views/admin_nav");
 			$this->load->view("/admin_views/flight_adder");
 		}else{
@@ -27,6 +27,7 @@ class Viewer extends CI_Controller {
 	}
 
 	public function edit_flight_view(){
+        $this->load->view("/includes/header");
 		if(isset($_SESSION['logged_in'])){
 			$_SESSION['status'] = "flight_editor";
 			
@@ -37,7 +38,6 @@ class Viewer extends CI_Controller {
 				$data['flights'][$i]->TIME_ARRIVAL = $this->convert_datetime_format_reverse($data['flights'][$i]->TIME_ARRIVAL);
 			}
 
-            $this->load->view("/includes/header");
 			$this->load->view("/admin_views/admin_nav");
 			$this->load->view("/admin_views/flight_editor", $data);
 		}else{
