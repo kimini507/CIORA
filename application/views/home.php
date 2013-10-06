@@ -5,6 +5,9 @@
 		echo $_SESSION['error_message'];
 	}
 ?>
+<script type="text/javascript">
+   
+</script>
 <div id="flight_search_container">
     <form onsubmit = "return false" id = "search_form" method="post">
         <h3>Search Flight: </h3>
@@ -16,7 +19,7 @@
         <div id ="search_info">
             <label for = "">Flight Id</label><input type = "text" id = "fid_search" name="via_id" placeholder="Flight Id"/><br/>
             <label for = "">Origin</label><input type = "text" id = "forigin_search" name="via_origin" placeholder="Origin"/><br/>
-            <label for = "">Destination</label><input type = "text" id = "fdestination_search" name="via_destination" placeholder="Destination"/><br/>
+            <label for = "">Destination</label><input type = "text" id = "fdestination_search" name="via_destination" placeholder="Destination" /><br/>
             <label for = "">Departure</label><input type = "date" id = "ftime_departure_search" name="via_time_departure"/><br/>
             <label for = "">Arrival</label><input type = "date" id = "ftime_arrival_search" name="via_time_arrival"/><br/>
         </div>

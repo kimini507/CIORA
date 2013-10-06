@@ -64,6 +64,10 @@ class Viewer extends CI_Controller {
         $res = $this->input->post("result");
         echo $res;
     }
+
+     public function book_success_view(){
+    	 $this->load->view("book_success_view.php");
+    }
 }
 
 /* End of file welcome.php */
