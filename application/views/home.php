@@ -12,6 +12,7 @@
             <label for = "ow">One Way</label><input type = "radio" id = "ow" name = "flight_type" value = "one_way" checked = "checked"/>
             <label for = "rt">Round Trip</label><input type = "radio" id = "rt" name = "flight_type" value = "round_trip"/>
         </div>
+        <label for = "">Passenger(s)</label><input type = "number" id = "fpassenger" name="passengers" value="1" min="1" max="10"/><br/>
         <div id ="search_info">
             <label for = "">Flight Id</label><input type = "text" id = "fid_search" name="via_id" placeholder="Flight Id"/><br/>
             <label for = "">Origin</label><input type = "text" id = "forigin_search" name="via_origin" placeholder="Origin"/><br/>

@@ -46,7 +46,7 @@
     }
 
     function update_flights(option){
-
+        console.log($("#fpassenger").val());
         switch(option){
             case "admin_edit":
                 data2 = {"flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val()};
@@ -62,7 +62,7 @@
                 });
                 break;
             case "customer":
-                data2 = {"flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
+                data2 = {"slot":$("#fpassenger").val(), "flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
 
                 $.post('/user/get_flights',data2, function(data) {
 
@@ -76,7 +76,7 @@
                 });
 
                 if($("#search_radio input[type='radio']:checked").val() == "round_trip"){
-                    data2 = {"flight_id":$("#fid_search").val(), "origin":$("#fdestination_search").val(),"destination":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
+                    data2 = {"slot":$("#fpassenger").val(), "flight_id":$("#fid_search").val(), "origin":$("#fdestination_search").val(),"destination":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
                     $.post('/user/get_flights',data2, function(data) {
 
                         data = JSON.parse(data);

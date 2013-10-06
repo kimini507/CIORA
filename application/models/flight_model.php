@@ -34,6 +34,8 @@ class Flight_model extends CI_Model{
             $searches .= "origin = '" . $data["origin"] . "' AND ";
         if(isset($data["destination"]) && $data["destination"] != "")
             $searches .= "destination = '" . $data["destination"] . "' AND ";
+        if(isset($data["slot"]) && $data["slot"] != "")
+            $searches .= "slot >= '" . $data["slot"] . "' AND ";
         if(isset($data["time_departure"]) && $data["time_departure"] != "")
             $searches .= "TO_CHAR(time_departure, 'YYYY-MM-DD HH24:MM') LIKE '%" . $data['time_departure'] . "%' AND ";
         if(isset($data["time_arrival"]) && $data["time_arrival"] != "")
