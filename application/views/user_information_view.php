@@ -15,9 +15,6 @@
 		  <input type="text" name="guest_mname" placeholder="middle name" required/>
 		  <input type="text" name="guest_lname" placeholder="last name" required/>
 		  <br/>
-	BirthDate:<input type="date" name="guest_bday" required/>
-	Nationality:<input type="text" name="guest_nationality"required/>
-	<br/>
 
 </fieldset>
 
@@ -63,36 +60,20 @@
 
 <fieldset>
 	<legend>User Contact Information</legend>
-	Name: 
-		<select name="user_title" required>
-			<option value="">Title</option>
-			<option value="Mr.">Mr.</option>
-			<option value="Ms.">Ms.</option>
-			<option value="Miss">Miss.</option>
-			<option value="Master">Master</option>
-		</select>
-		  <input type="text" name="user_fname" placeholder="first name" required/>
-		  <input type="text" name="user_mname" placeholder="middle name" required/>
-		  <input type="text" name="user_lname" placeholder="last name" required/>
-		  <br/>
 	Complete Address:
 		<input type="textarea" name="user_address" required/>
 		<br/>
-	Zip Code:
-		<input type="text" name="user_zipcode" required/>
-		<br/>
-	Country:<input type="text" name="user_country" required/>
-		<br/>
+
+    Email Address:<input type="email" name="user_email" required/>
+        <br/>
+    Confirm Email:<input type="email" name="user_re-email" required/>
+        <br/>
 
 	Home Phone:<input type="text" name="user_homephone" required/>
 		<br/>
 	Mobile Phone:<input type="text" name="user_mobilephone" required/>
 		<br/>
-	Email Address:<input type="email" name="user_email" required/>
-		<br/>
 
-	Confirm Email:<input type="email" name="user_re-email" required/>
-		<br/>
 
 </fieldset>
 
