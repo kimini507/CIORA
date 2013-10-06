@@ -42,7 +42,7 @@
 	function validate_return_flight(){
 		str=customer_form.return_flight.value;
 		if(str.match(/^[A-Za-z0-9]{6}$/) || str==""){
-			msg="";
+    			msg="";
 			document.getElementsByName('help_return_flight')[0].innerHTML=msg;
 			return true;
 		} 
@@ -60,14 +60,13 @@
 	<fieldset>
 		<legend> Customer </legend>
 		<form name="customer_form">
-			<label>Customer ID: <input type="text" name="customer_id" required /></label>
-			<span name="help_customer_id"></span><br/>
-			<label>Name: <input type="text" name="customer_name" required/></label>
-			<span name="help_customer_name"></span><br/>
-			<label>Departure Flight ID: <input type="text" name="depart_flight" required/></label>
-			<span name="help_depart_flight"></span><br/>
-			<label>Return Flight ID: <input type="text" name="return_flight" /></label>
-			<span name="help_return_flight"></span><br/>
+            <label>Name: <input type="text" name="customer_name" required/></label>
+            <span name="help_customer_name"></span><br/>
+            <label>Birthday: <input type="date" name="customer_birthday" required/></label>
+            <span name="help_customer_birthday"></span><br/>
+            <label>Name: <input type="text" name="customer_name" required/></label>
+            <span name="help_customer_name"></span><br/>
+
 		</form>
 		<input type="submit" />
 	</fieldset>
