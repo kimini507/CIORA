@@ -131,7 +131,7 @@
             $("#flights_container > table").append(
             '<tr>' +
                 '<form action = "/user/edit_flight" method = "post">' +
-                '<td><input type = "text" name = "flight_id"  value = "'+ data.flights[i].FLIGHT_ID +'"/></td>' +
+                '<td><input type = "text" name = "flight_id" readonly="readonly"  value = "'+ data.flights[i].FLIGHT_ID +'"/></td>' +
 
                 '<td><input type = "number" name = "slot" value = "'+ data.flights[i].SLOT + '"/></td>' +
 

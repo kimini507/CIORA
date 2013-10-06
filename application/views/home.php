@@ -4,15 +4,6 @@
 	if(isset($_SESSION['error_message'])){
 		echo $_SESSION['error_message'];
 	}
-
-	if(!isset($_SESSION['logged_in'])){
-		include("site_nav.php");
-	}else{
-		/*put what the admin can see here
-			e.g. Nav bar for the admin	
-		*/
-		include("admin_views/admin_nav.php");
-	}
 ?>
 <div id="flight_search_container">
     <form onsubmit = "return false" id = "search_form" method="post">

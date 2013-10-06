@@ -19,7 +19,6 @@ class Viewer extends CI_Controller {
 
 		if(isset($_SESSION['logged_in'])){
 			$_SESSION['status'] = "flight_adder";
-			$this->load->view("/admin_views/admin_nav");
 			$this->load->view("/admin_views/flight_adder");
 		}else{
 			redirect("../");
@@ -38,7 +37,6 @@ class Viewer extends CI_Controller {
 				$data['flights'][$i]->TIME_ARRIVAL = $this->convert_datetime_format_reverse($data['flights'][$i]->TIME_ARRIVAL);
 			}
 
-			$this->load->view("/admin_views/admin_nav");
 			$this->load->view("/admin_views/flight_editor", $data);
 		}else{
 			redirect("../");
@@ -46,6 +44,7 @@ class Viewer extends CI_Controller {
 	}
 
     public function login_view(){
+        $this->load->view("includes/header.php");
         $this->load->view("login_view.php");
     }
 
@@ -56,6 +55,10 @@ class Viewer extends CI_Controller {
 
 		return $datetime;
 	}
+
+    public function home_view(){
+        redirect("../");
+    }
 
     public function booking_view(){
         $res = $this->input->post("result");

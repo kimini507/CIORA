@@ -26,7 +26,7 @@
 	<?php for( $i = 0, $j = count($flights); $i < $j; $i++){?>
 			<tr>
 		<form action = "/user/edit_flight" method = "post">
-				<td><input type = "text" name = "flight_id"  value = '<?php echo $flights[$i]->FLIGHT_ID;?>'/></td>
+				<td><input type = "text" readonly="readonly" name = "flight_id"  value = '<?php echo $flights[$i]->FLIGHT_ID;?>'/></td>
 				
 				<td><input type = "number" name = "slot" value = '<?php echo $flights[$i]->SLOT;?>'/></td>
 
