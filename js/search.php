@@ -95,8 +95,8 @@
         appender = 1;
         if(divName.indexOf("return") != -1)
             appender = 2;
-
-        $("#flights_div_return").html("");
+        else if($("#search_radio input[type='radio']:checked").val() == "one_way")
+            $("#flights_div_return").html("");
 
         $(divName).html(
             "<table border = 1>" +
