@@ -3,12 +3,16 @@
     //console.log(flightData);
     $(document).ready(function(){
         $("#search_customer_submit").click(function(e){
+            if($("#forigin_search").val()!="" && $("#fdestination_search").val()!=""){
             update_flights("customer");
             e.preventDefault();
+        }
         });
         $("#search_admin_submit").click(function(e){
+            
             update_flights("admin_edit");
             e.preventDefault();
+            
         });
         $("#search_radio").click(function(e){
             update_search_div($("#search_radio input[type='radio']:checked").val());
