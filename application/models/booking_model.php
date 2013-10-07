@@ -9,26 +9,31 @@ class Booking_model extends CI_Model{
         $this->load->database();
     }
 
-	function get_flight($flights){
-		$data['status'] = "Success";
-		$data['result'] = $this->db->query("SELECT * 
-											FROM flight 
-											WHERE
-												destination = '" . $flights['destination'] .
-												"' AND origin = '" . $flights['origin'] ."'
-											ORDER BY flight_id")->result();
-		return $data;
-	}
+    function add_customer($data){
+        $data["customer_id"] = $this->db->query("SELECT customer_customer_id.NEXTVAL FROM dual");
 
-	function book_flight($data){
-		$this->db->query("INSERT INTO books
-							VALUES ('" .
-								$data['customer_id'] . "','" .
-								$data['flight_id'] . "','" .
-								$data['class'] . "','" .
-								$data['flight_type'] . "'" .
-							")");
-	}
+        $this->db->query("INSERT INTO customer VALUES(customer_customer_id.NEXTVAL, '" .
+            $data["name"] . "','" .
+            $data["flight2"] . "','" .
+            $data["flight1"]
+        );
+
+        $data["flight"] = $data["flight1"];
+        $this->add_book_data($data);
+
+        if($data["flight2"] != NULL){
+            $data["flight"] = $data["flight2"];
+            $this->add_book_data($data);
+        }
+    }
+
+    function add_book_data($data){
+        $this->db->query("INSERT INTO books VALUES(" .
+            $data["customer_id"] . "," .
+            $data["name"] . "','" .
+            $data["flight"] . "'"
+        );
+    }
 
 }
 
