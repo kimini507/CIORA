@@ -1,7 +1,7 @@
 <?php $places = array("Bacolod","Boracay","Butuan","Cagayan de Oro","Camiguin","Cauayan","Cebu","Clark","Coron","Cotabato","Davao","Dipolog","Dumaguete","General Santos","Iloilo","Kalibo","Laoag","Legazpi","Manila","Masbate","Naga","Ozamiz","Pagadian","Puerto Princesa","Roxas","San Jose (Occ. Mindoro)","Siargao","Tacloban","Tagbilaran","Tawi-Tawi","Tuguegarao","Virac","Zamboanga");
 ?>
 
-<div id="flight_search_container">
+<div id="flight_search_container_admin">
     <form onsubmit = "return false" id = "search_form" method="post">
         <h3>Search Flight: </h3>
         <input type = "text" id = "fid_search" name="via_id" placeholder="Flight Id"/>
@@ -25,8 +25,8 @@
 		</tr>
 
 	<?php for( $i = 0, $j = count($flights); $i < $j; $i++){?>
+        <form action = "/user/edit_flight" method = "post">
 			<tr>
-		<form action = "/user/edit_flight" method = "post">
 				<td><input type = "text" readonly="readonly" name = "flight_id"  value = '<?php echo $flights[$i]->FLIGHT_ID;?>'/></td>
 				
 				<td><input type = "number" name = "slot" value = '<?php echo $flights[$i]->SLOT;?>'/></td>
@@ -61,7 +61,7 @@
 				</td>
 
 				<td><input type = "submit" value = "Edit" name = "submit"/></td>
-		</form>
+        </form>
 		<form action = "/user/delete_flight" method = "post">
 			<td>
 				<input type = "text" name = "delete" value = '<?php echo $flights[$i]->FLIGHT_ID?>' hidden = "hidden"/>

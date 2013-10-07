@@ -13,7 +13,6 @@ class Booking extends CI_Controller {
     }
 
     function step1(){
-        var_dump($_POST);
         $this->load->view("includes/header");
         $this->load->view("user_information_view", $_POST);
         $this->load->view("includes/footer");
@@ -30,16 +29,14 @@ class Booking extends CI_Controller {
             $data[1] = $flight2[0];
         }
 
-        var_dump($data);
-        var_dump($_POST);
 
         $_SESSION["flights"] = $data;
         $_SESSION["passengers"] = $_POST;
 
-        var_dump($_SESSION);
         $this->load->view("includes/header");
         $this->load->view("book_success_view", ["flights"=>$data, "passengers"=>$_POST]);
         $this->load->view("includes/footer");
+
     }
 
     function finalize_book(){
@@ -52,6 +49,8 @@ class Booking extends CI_Controller {
 
             $this->booking_model->add_customer($data);
         }
+
+        $this->flight_model->dec_slot($_SESSION["flights"][0]->FLIGHT_ID);
 
         $this->load->view("includes/header");
         $this->load->view("final_step");

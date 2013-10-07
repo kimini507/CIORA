@@ -29,7 +29,6 @@ class User extends CI_Controller {
 
 	public function log_in(){
 		$accounts = $this->user_model->get_admin_accounts();
-		//var_dump($accounts);
 
 		foreach($accounts as $account){
 			if($account->USERNAME == $_POST['username']){
@@ -118,8 +117,6 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 
 
 
-//		var_dump($this->convert_datetime_format($_POST['departure_time']));
-//		var_dump($_POST);
 	}
 
 
@@ -185,6 +182,34 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 
         echo $res;
     }
+
+    public function get_flights_visible(){
+        $flights = "";
+        $this->input->post("flight_id");
+
+        $data["flight_id"] = $this->input->post("flight_id");
+        $data["origin"] = $this->input->post("origin");
+        $data["destination"] = $this->input->post("destination");
+        $data["time_departure"] = $this->input->post("time_departure");
+        $data["time_arrival"] = $this->input->post("time_arrival");
+        $data["slot"] = $this->input->post("slot");
+        $data["status"] = 'VB';
+
+
+        $_SESSION["search"] = $data;
+
+        if($this->input->post("type") == 1)
+            $flights = $this->flight_model->get_flights_with($data);
+        else
+            $flights = $this->flight_model->get_flights_with2($data);
+
+        $res["flights"] = $flights;
+        $res = json_encode($res);
+
+        echo $res;
+    }
+
+
 }
 
 /* End of file welcome.php */

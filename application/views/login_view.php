@@ -35,14 +35,14 @@
 </script>
 
 <div>
-	<fieldset>
+	<fieldset id="admin_login">
 		<legend> Administration </legend>
 		<form onsubmit="return  validate_username_password()" action = "/user/log_in" name="login_form" method="post">
 			<label>Username: <input type="text" name="username" required /></label>
-			<span name="help_admin"></span><br/>
+			<span id="help_admin" name="help_admin"></span><br/>
 			<label>Password: <input type="password" name="password" required/></label>
-			<span name="help_admin_pass"></span><br/>
-			<input type="submit"/>
+			<span id="help_admin_pass" name="help_admin_pass"></span><br/>
+			<input id="submit_button" type="submit"/>
 		</form>
 	</fieldset>
 </div>

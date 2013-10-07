@@ -34,7 +34,6 @@ class Booking_model extends CI_Model{
     }
 
     function add_book_data($data){
-        var_dump($data["customer_id"]);
         $this->db->query("INSERT INTO books VALUES(" .
             $data["customer_id"]->NEXTVAL . ",'" .
             $data["flight"] . "','" .

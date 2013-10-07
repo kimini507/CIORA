@@ -60,6 +60,7 @@
             case "admin_edit":
                 data2 = {"flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val()};
                 $.post('/user/get_flights',data2, function(data) {
+                    console.log(data);
 
                     data = JSON.parse(data);
                     flightData = "" + data;
@@ -76,9 +77,10 @@
                 done2 = 0;
                 data2 = {"type":1,"slot":$("#fpassenger").val(), "flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
 
-                $.post('/user/get_flights',data2, function(data) {
+                $.post('/user/get_flights_visible',data2, function(data) {
                     $("#passenger_number").val($("#fpassenger").val());
 
+                    console.log(data);
                     data = JSON.parse(data);
                     flightData = data;
                     for(i = 0, j = data.flights.length; i < j; i++){
@@ -112,9 +114,10 @@
                         data2 = {"type":2,"slot":$("#fpassenger").val(), "flight_id":$("#fid_search").val(), "origin":$("#fdestination_search").val(),"destination":$("#forigin_search").val(),"time_departure":$("#rtime_departure_search").val(),"time_arrival":$("#rtime_arrival_search").val()};
                         console.log("entered2-------2");
                     }
-                    $.post('/user/get_flights',data2, function(data) {
+                    $.post('/user/get_flights_visible',data2, function(data) {
 
                         data = JSON.parse(data);
+                        console.log(data);
                         flightData = data;
                         for(i = 0, j = data.flights.length; i < j; i++){
                             data.flights[i].TIME_ARRIVAL = data.flights[i].TIME_ARRIVAL.split(' ').join('T');
@@ -157,16 +160,16 @@
             $("#flights_div_return").html("");
 
         $(divName).html(
-            "<table border = 1>" +
-                "<tr>" +
-                    "<td></td>" +
+            "<table border = 1 id='user_table"+ appender +"'>" +
+                "<th>" +
+//                    "<td></td>" +
                     "<td>FLIGHT ID </td>" +
                     "<td>SLOTS </td>" +
                     "<td>ORIGIN </td>" +
                     "<td>DESTINATION </td>" +
                     "<td>TIME DEPARTURE </td>" +
                     "<td>TIME ARRIVAL </td>" +
-                "</tr>"+
+                "</th>"+
             "</table>"
         )
 

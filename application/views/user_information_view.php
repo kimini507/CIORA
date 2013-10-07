@@ -6,9 +6,9 @@
 
 <div><!--after ng search flight eto-->
 
-<form action="/booking/step2" method="post">
+<form action="/booking/step2" method="post" id="customer_form">
     <!-- put the number from session i think-->
-    <input type = "number" name = "passenger_number" value = '<?php echo $passenger_number;?>' hidden = "hidden"/>
+    <input type = "number" id = "passenger_number" name = "passenger_number" value = '<?php echo $passenger_number;?>' hidden = "hidden"/>
     <?php for($i = 0, $j = $passenger_number; $i<$j; $i++){ ?>
 	<fieldset>
 		<legend>GUEST  <?php echo $i+1; ?> <!-- dito nakalagay Adult1...--></legend>
@@ -86,7 +86,7 @@
 
 </fieldset>
 <?php } ?>
-<input type="submit" value="Continue"/>
+<input type="submit" id="press_button" value="Continue"/>
 </form>
 
 

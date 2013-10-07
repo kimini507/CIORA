@@ -8,7 +8,6 @@
 <body>
 <?php
 	
-	var_dump($result);
 ?>
 </body>
 </html>

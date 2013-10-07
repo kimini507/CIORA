@@ -33,7 +33,7 @@ function validate_slot () {
 	
 		 if(!str.match(/^[0-9]{1,3}$/)) 
 		 {
-		 	var msg="Must be a number and less than 1000.";
+		 	var msg="Must be a number and less than 150.";
 		 	document.getElementsByName('help_slot')[0].innerHTML=msg;
 		 	return false;
 		}

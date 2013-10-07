@@ -93,6 +93,6 @@
         </div>
     </div>
 	<form action="/booking/finalize_book" method="post">
-		<input type="submit" value="Finalize">
+		<input type="submit" id="press_button" value="Finalize">
 	</form>
 </div>

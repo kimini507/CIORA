@@ -12,17 +12,20 @@ class Flight_model extends CI_Model{
 
     public function get_all_flight_data(){
     	$res = $this->db->query('SELECT flight_id, slot, destination, origin, TO_CHAR(time_departure, ' . "'YYYY-MM-DD HH24:MM')" .'"TIME_DEPARTURE", TO_CHAR(time_arrival, ' . "'YYYY-MM-DD HH24:MM')" .'"TIME_ARRIVAL", status, fare FROM flight ORDER BY flight_id')->result();
-    	return $res;
+        $this->db->close();
+        return $res;
     }
 
     public function get_visible_flight_data(){
     	$res = $this->db->query("SELECT * FROM flight WHERE status = 'VB'")->result();
-    	return $res;
+        $this->db->close();
+        return $res;
     }
 
     public function get_invisible_flight_data(){
     	$res = $this->db->query("SELECT * FROM flight WHERE status = 'NV'")->result();
-    	return $res;
+        $this->db->close();
+        return $res;
     }
 
     public function get_flights_with($data){
@@ -40,10 +43,13 @@ class Flight_model extends CI_Model{
             $searches .= "TO_CHAR(time_departure, 'YYYY-MM-DD HH24:MM') LIKE '%" . $data['time_departure'] . "%' AND ";
         if(isset($data["time_arrival"]) && $data["time_arrival"] != "")
             $searches .= "TO_CHAR(time_arrival, 'YYYY-MM-DD HH24:MM') LIKE '%" . $data['time_arrival'] . "%' AND ";
+        if(isset($data["status"]) && $data["status"] != "")
+            $searches .= "status = '" . $data['status'] . "' AND ";
         if($searches != ""){
             $searches = "WHERE " . substr($searches, 0, strlen($searches)-4);
         }
         $res = $this->db->query('SELECT flight_id, slot, destination, origin, TO_CHAR(time_departure, ' . "'YYYY-MM-DD HH24:MM')" .'"TIME_DEPARTURE", TO_CHAR(time_arrival, ' . "'YYYY-MM-DD HH24:MM')" . '"TIME_ARRIVAL", status, fare FROM flight ' . $searches .' ORDER BY flight_id')->result();
+        $this->db->close();
         return $res;
     }
 
@@ -66,7 +72,13 @@ class Flight_model extends CI_Model{
             $searches = "WHERE " . substr($searches, 0, strlen($searches)-4);
         }
         $res = $this->db->query('SELECT flight_id, slot, destination, origin, TO_CHAR(time_departure, ' . "'YYYY-MM-DD HH24:MM')" .'"TIME_DEPARTURE", TO_CHAR(time_arrival, ' . "'YYYY-MM-DD HH24:MM')" . '"TIME_ARRIVAL", status, fare FROM flight ' . $searches .' ORDER BY flight_id')->result();
+        $this->db->close();
         return $res;
+    }
+
+    function dec_slot($flight_id){
+        $this->db->query("UPDATE flight SET slot = slot - " . $_SESSION["passenger_info"]["passenger_number"] . " WHERE flight_id = '" . $flight_id . "'");
+        $this->db->close();
     }
 }
 
