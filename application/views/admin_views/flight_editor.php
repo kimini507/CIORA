@@ -64,8 +64,8 @@
         </form>
 		<form action = "/user/delete_flight" method = "post">
 			<td>
-				<input type = "text" name = "delete" value = '<?php echo $flights[$i]->FLIGHT_ID?>' hidden = "hidden"/>
 				<input type = "submit" value = 'X'/>
+                <input type = "text" class="input_delete" name = "delete" value = '<?php echo $flights[$i]->FLIGHT_ID?>' hidden = "hidden"/>
 			</td>
 		</form>
 			</tr>

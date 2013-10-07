@@ -12,6 +12,7 @@ body{
 }
 
 #header { /* for admin navigation */
+    position:fixed;
 	background-color: #555;
 	color: #fff200;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
@@ -20,6 +21,8 @@ body{
 	padding: 2%;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
+    z-index:20;
+    top:0;
 }
 
 h3 {
@@ -50,6 +53,7 @@ h3 {
 	height: 100%;
 	width: 17.5%;
     margin: 2%;
+    margin-top:100px;
 }
 
 #admin {
@@ -61,6 +65,7 @@ h3 {
     padding: 1%;
     width: 40%;
     margin: 1%;
+    margin-top:100px;
 }
 
 #flight_container {
@@ -73,6 +78,7 @@ h3 {
     margin: 2% 0% 1% 1%;
     padding: 2%;
     width: 68%;
+    margin-top:100px;
 }
 
 #search_radio > label{
@@ -86,6 +92,7 @@ h3 {
 }
 
 #flight_search_container_admin {
+    position:fixed;
 	border-radius: 10px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
 	background-color: #d3d2d7;
@@ -94,6 +101,8 @@ h3 {
 	padding: 1%;
 	width: 800px;
 	margin: 1%;
+    margin-top:100px;
+    z-index:10;
 }
 
 #admin_login {
@@ -103,6 +112,7 @@ h3 {
     background-color: #d3d2d7;
     border-radius: 10px;
     box-shadow:  0 3px 5px rgba(0, 0, 0, 0.5);
+    margin-top:100px;
 }
 
 #customer_form {
@@ -112,6 +122,7 @@ h3 {
     background-color: #d3d2d7;
     border-radius: 10px;
     box-shadow:  0 3px 5px rgba(0, 0, 0, 0.5);
+    margin-top:100px;
 }
 
 #help_admin, #help_admin_pass {
@@ -136,6 +147,7 @@ h3 {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
     position: relative;
     border-top-right-radius: 7px;
+    margin-top:100px;
 }
 
 #user_table2 {
@@ -221,9 +233,21 @@ button{
 	font-size: 12px;
 }
 
+#addflight{
+    margin-top:100px;
+
+}
+
+#flights_container{
+    position:absolute;
+    margin-top:270px;
+    z-index:5;
+}
 .footer, #footer {
 	float: left;
-	/*position: absolute-bottom;*/
+	position: relative;
+    bottom:0;
+    margin-botom:0px;
 	margin-bottom: 0px;
 	padding: 10px 0px 10px 0px;
 	background-color: #555;
@@ -242,7 +266,10 @@ button{
     border-radius: 10px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
 }
+#flight_details{
+    margin-top:100px;
+}
 
-#passenger_number {
+#passenger_number, .input_delete {
     visibility: hidden;
 }

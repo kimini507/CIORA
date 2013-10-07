@@ -120,8 +120,8 @@
                         console.log(data);
                         flightData = data;
                         for(i = 0, j = data.flights.length; i < j; i++){
-                            data.flights[i].TIME_ARRIVAL = data.flights[i].TIME_ARRIVAL.split(' ').join('T');
-                            data.flights[i].TIME_DEPARTURE = data.flights[i].TIME_DEPARTURE.split(' ').join('T');
+                            data.flights[i].TIME_ARRIVAL = data.flights[i].TIME_ARRIVAL;
+                            data.flights[i].TIME_DEPARTURE = data.flights[i].TIME_DEPARTURE;
                         }
                         update_view2(data, "#flights_div_return");
                         console.log(data);
