@@ -43,7 +43,7 @@ class Booking extends CI_Controller {
     }
 
     function finalize_book(){
-        for($i = 0, $j < $_SESSION["passenger_info"]["passenger_number"]; $i<$j; $i++){
+        for($i = 0, $j = $_SESSION["passenger_info"]["passenger_number"]; $i<$j; $i++){
             $data["name"] = $_SESSION["passenger_info"]["guest_fname" . $i] . " " . $_SESSION["passenger_info"]["guest_mname" . $i] . " " . $_SESSION["passenger_info"]["guest_lname" . $i];
             $data["flight1"] = $_SESSION["flights"][0]->FLIGHT_ID;
             $data["flight2"] = "NULL";
