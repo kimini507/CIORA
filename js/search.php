@@ -16,6 +16,7 @@
         });
         $("#search_radio").click(function(e){
             update_search_div($("#search_radio input[type='radio']:checked").val());
+            remove_view();
         });
         $("#book_submit").hide();
 
@@ -46,7 +47,6 @@
             console.log(status);
         }
 
-        $("#book_submit").show();
     }
 
     function update_flights(option){
@@ -66,21 +66,27 @@
                 });
                 break;
             case "customer":
-                data2 = {"slot":$("#fpassenger").val(), "flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
+                data2 = {"type":1,"slot":$("#fpassenger").val(), "flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
 
                 $.post('/user/get_flights',data2, function(data) {
 
                     data = JSON.parse(data);
                     flightData = data;
                     for(i = 0, j = data.flights.length; i < j; i++){
-                        data.flights[i].TIME_ARRIVAL = data.flights[i].TIME_ARRIVAL.split(' ').join('T');
-                        data.flights[i].TIME_DEPARTURE = data.flights[i].TIME_DEPARTURE.split(' ').join('T');
+                        data.flights[i].TIME_ARRIVAL = data.flights[i].TIME_ARRIVAL;
+                        data.flights[i].TIME_DEPARTURE = data.flights[i].TIME_DEPARTURE;
                     }
                     update_view2(data, "#flights_div");
                 });
 
                 if($("#search_radio input[type='radio']:checked").val() == "round_trip"){
-                    data2 = {"slot":$("#fpassenger").val(), "flight_id":$("#fid_search").val(), "origin":$("#fdestination_search").val(),"destination":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
+                    if($("#rtime_departure_search").val() == ""){
+                        data2 = {"type":2,"slot":$("#fpassenger").val(), "flight_id":$("#fid_search").val(), "origin":$("#fdestination_search").val(),"destination":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
+                        console.log("entered1-------1");
+                    }else{
+                        data2 = {"type":2,"slot":$("#fpassenger").val(), "flight_id":$("#fid_search").val(), "origin":$("#fdestination_search").val(),"destination":$("#forigin_search").val(),"time_departure":$("#rtime_departure_search").val(),"time_arrival":$("#rtime_arrival_search").val()};
+                        console.log("entered2-------2");
+                    }
                     $.post('/user/get_flights',data2, function(data) {
 
                         data = JSON.parse(data);
@@ -90,9 +96,19 @@
                             data.flights[i].TIME_DEPARTURE = data.flights[i].TIME_DEPARTURE.split(' ').join('T');
                         }
                         update_view2(data, "#flights_div_return");
+                        console.log(data);
+                        if(data.flights.length == 0){
+                            remove_view();
+                        }
                     });
                 }
         }
+    }
+
+    function remove_view(){
+        $("#flights_div").html("");
+        $("#flights_div_return").html("");
+        $("#book_submit").hide();
     }
 
     function update_view2(data, divName){

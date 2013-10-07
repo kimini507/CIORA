@@ -20,7 +20,8 @@
 			<td>DESTINATION </td>
 			<td>TIME DEPARTURE </td>
 			<td>TIME ARRIVAL </td>
-			<td>VISIBILTY </td>
+            <td>FARE </td>
+            <td>VISIBILTY </td>
 		</tr>
 
 	<?php for( $i = 0, $j = count($flights); $i < $j; $i++){?>
@@ -50,6 +51,7 @@
             <td><input type = "datetime-local" name = "departure_time" value = '<?php echo $flights[$i]->TIME_DEPARTURE;?>'/></td>
 
 				<td><input type = "datetime-local" name = "arrival_time" value = '<?php echo $flights[$i]->TIME_ARRIVAL;?>'/></td>
+                <td><input type = "number" name = "fare" value = '<?php echo $flights[$i]->FARE;?>'/></td>
 
 				<td>
 				<select  name="status">

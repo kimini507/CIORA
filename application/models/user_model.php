@@ -59,7 +59,8 @@ class User_model extends CI_Model{
     						destination = '" . $flight['destination'] . "',
     						time_departure = TO_TIMESTAMP('" . $flight['time_departure'] . "', 'YYYY-MM-DD HH24:MI'),
     						time_arrival = TO_TIMESTAMP('" . $flight['time_arrival'] . "', 'YYYY-MM-DD HH24:MI'),
-    						status = '" . $flight['visibility'] . "'
+    						status = '" . $flight['visibility'] . "',
+    						fare = " . $flight['fare'] . "
     						WHERE flight_id = '" . $flight['flight_id'] . "'
     						");
     }

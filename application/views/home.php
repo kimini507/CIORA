@@ -26,11 +26,15 @@
         <input type = "submit" id = "search_customer_submit" name = "search" value="Search"/><br/>
     </form>
 </div>
+
+<div id="flights_container">
     <form action="/booking/step1" id="booking_form" method = "post">
         <div id="flights_div"></div>
         <div id="flights_div_return"></div>
         <input type = 'submit' name = 'book_submit' id="book_submit" value = 'Book'/>
     </form>
+</div>
+
 <?php
     include("/js/search.php");
 	include("includes/footer.php");

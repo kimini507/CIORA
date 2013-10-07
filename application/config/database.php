@@ -49,7 +49,7 @@ $active_group 		= 'default';
 $active_record 		= TRUE;
 $dbhost 			= "127.0.0.1";    //host 
 $dbport				= "1521";          //port default is 1521 
-$dbname 			= "system";        //name of database
+$dbname 			= "globaldb";        //name of database
 $dbuser 			= "GUILA";      //db user with all priviliges
 $dbpassword 		= "GUILAGUILD";    // password of user
 $dbConnString 		= "(DESCRIPTION =(ADDRESS_LIST =(ADDRESS = (PROTOCOL = TCP)(HOST = ". $dbhost .")(PORT = ". $dbport .")))(CONNECT_DATA =(SERVICE_NAME = ". $dbname .")))";    // connection string for this we must create TNS entry for Oracle

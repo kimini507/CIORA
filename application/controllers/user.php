@@ -136,9 +136,10 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 										"destination"=>	$_POST['destination'],
 										"origin"=>$_POST['origin'],
 										"time_departure"=> $this->convert_datetime_format($_POST['departure_time']),
-										"time_arrival"=> $this->convert_datetime_format($_POST['departure_time']),
-										"visibility"=>$_POST['status']
-										]);	
+										"time_arrival"=> $this->convert_datetime_format($_POST['arrival_time']),
+                                        "visibility"=>$_POST['status'],
+										"fare"=>$_POST['fare']
+										]);
 		
 		$_SESSION['status'] = 'none';
 		redirect('../viewer/edit_flight_view');
@@ -161,7 +162,7 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
     /*----------------------------SEARCH FLIGHTS----------------------*/
 
     public function get_flights(){
-
+        $flights = "";
         $this->input->post("flight_id");
 
         $data["flight_id"] = $this->input->post("flight_id");
@@ -174,7 +175,10 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 
         $_SESSION["search"] = $data;
 
-        $flights = $this->flight_model->get_flights_with($data);
+        if($this->input->post("type") == 1)
+            $flights = $this->flight_model->get_flights_with($data);
+        else
+            $flights = $this->flight_model->get_flights_with2($data);
 
         $res["flights"] = $flights;
         $res = json_encode($res);
