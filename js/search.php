@@ -136,7 +136,7 @@
             $(divName+" table").append(
                 "<tr>" +
                     "<td>" +
-                    "<input type = 'radio' name='flight_choice"+ appender +"' value = '' " + data.flights[i].FLIGHT_ID +
+                    "<input type = 'radio' name='flight_choice"+ appender +"' value = '" + data.flights[i].FLIGHT_ID + "'/>" +
                     "</td>" +
                     "<td>" +
                     data.flights[i].FLIGHT_ID +
