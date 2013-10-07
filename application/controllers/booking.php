@@ -12,21 +12,9 @@ class Booking extends CI_Controller {
         $this->load->helper('form');
     }
 
-    public function _remap($functionName,$args)
-    {
-        switch($functionName)
-        {
-            case "step1":
-                $this->load->view('includes/header');
-                $this->load->view('user_information_view');
-                break;
-            case "step2":
-                $this->load->view('step2');
-                break;
-            case "step3":
-                $this->load->view('step3');
-                break;
-        }
+    function step1(){
+        var_dump($_POST);
+
     }
 
 

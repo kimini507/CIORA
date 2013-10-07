@@ -29,6 +29,7 @@
 
 <div id="flights_container">
     <form action="/booking/step1" id="booking_form" method = "post">
+        <input type = "number" id = "passenger_number" name="passenger_number" value = "0" hidden = "hidden" />
         <div id="flights_div"></div>
         <div id="flights_div_return"></div>
         <input type = 'submit' name = 'book_submit' id="book_submit" value = 'Book'/>

@@ -1,5 +1,8 @@
 <script>
     places = ["Bacolod","Boracay","Butuan","Cagayan de Oro","Camiguin","Cauayan","Cebu","Clark","Coron","Cotabato","Davao","Dipolog","Dumaguete","General Santos","Iloilo","Kalibo","Laoag","Legazpi","Manila","Masbate","Naga","Ozamiz","Pagadian","Puerto Princesa","Roxas","San Jose (Occ. Mindoro)","Siargao","Tacloban","Tagbilaran","Tawi-Tawi","Tuguegarao","Virac","Zamboanga"];
+    checked = 0;
+    done1 = 0;
+    done2 = 0;
     //console.log(flightData);
     $(document).ready(function(){
         $("#search_customer_submit").click(function(e){
@@ -15,11 +18,13 @@
             
         });
         $("#search_radio").click(function(e){
+            checked = 0;
+            done1 = 0;
+            done2 = 0;
             update_search_div($("#search_radio input[type='radio']:checked").val());
             remove_view();
         });
         $("#book_submit").hide();
-
     });
 
     function update_search_div(status){
@@ -66,9 +71,13 @@
                 });
                 break;
             case "customer":
+                $("#book_submit").hide();
+                done1 = 0;
+                done2 = 0;
                 data2 = {"type":1,"slot":$("#fpassenger").val(), "flight_id":$("#fid_search").val(), "destination":$("#fdestination_search").val(),"origin":$("#forigin_search").val(),"time_departure":$("#ftime_departure_search").val(),"time_arrival":$("#ftime_arrival_search").val()};
 
                 $.post('/user/get_flights',data2, function(data) {
+                    $("#passenger_number").val($("#fpassenger").val());
 
                     data = JSON.parse(data);
                     flightData = data;
@@ -77,6 +86,22 @@
                         data.flights[i].TIME_DEPARTURE = data.flights[i].TIME_DEPARTURE;
                     }
                     update_view2(data, "#flights_div");
+
+                    $("#flights_div input[type = 'radio']").click(function(e){
+                        if(done1 == 0){
+                            if(checked == 0)
+                                checked = 1;
+                            else if(checked == 1)
+                                checked = 2;
+
+                            if($("#search_radio input[type='radio']:checked").val() == "one_way")
+                                checked = 2;
+
+                            if(checked == 2)
+                                $("#book_submit").show();
+                            done1 = 1;
+                        }
+                    });
                 });
 
                 if($("#search_radio input[type='radio']:checked").val() == "round_trip"){
@@ -100,6 +125,19 @@
                         if(data.flights.length == 0){
                             remove_view();
                         }
+
+                        $("#flights_div_return input[type = 'radio']").click(function(e){
+                            if(done2 == 0){
+                                if(checked == 0)
+                                    checked = 1;
+                                else if(checked == 1)
+                                    checked = 2;
+
+                                if(checked == 2)
+                                    $("#book_submit").show();
+                                done2 = 1;
+                            }
+                        });
                     });
                 }
         }
@@ -159,9 +197,6 @@
                 "</tr>"
             );
         }
-
-        $("#book_submit").show();
-
     }
 
     function update_view(data){
