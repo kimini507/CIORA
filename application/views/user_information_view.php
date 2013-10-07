@@ -1,19 +1,22 @@
 <div><!--after ng search flight eto-->
 
 <form action="" method="post">
+    <!-- put the number from session i think-->
+    <input type = "number" name = "passenger_number" value = "5" hidden = "hidden"/>
+    <?php for($i = 0, $j = 5/*put the number of passengers here*/; $i<$j; $i++){ ?>
 	<fieldset>
-		<legend>GUEST <!-- dito nakalagay Adult1...--></legend>
+		<legend>GUEST  <?php echo $i+1; ?> <!-- dito nakalagay Adult1...--></legend>
 	Name: 
-		<select name="guest_title" required>
+		<select name="guest_title" + '<?php echo $i; ?>' required>
 			<option value="">Title</option>
 			<option value="Mr.">Mr.</option>
 			<option value="Ms.">Ms.</option>
 			<option value="Miss">Miss.</option>
 			<option value="Master">Master</option>
 		</select>
-		  <input type="text" name="guest_fname" placeholder="first name" required/>
-		  <input type="text" name="guest_mname" placeholder="middle name" required/>
-		  <input type="text" name="guest_lname" placeholder="last name" required/>
+		  <input type="text" name="guest_fname" + '<?php echo $i; ?>' placeholder="first name" required/>
+		  <input type="text" name="guest_mname" + '<?php echo $i; ?>' placeholder="middle name" required/>
+		  <input type="text" name="guest_lname" + '<?php echo $i; ?>' placeholder="last name" required/>
 		  <br/>
 
 </fieldset>
@@ -61,22 +64,22 @@
 <fieldset>
 	<legend>User Contact Information</legend>
 	Complete Address:
-		<input type="textarea" name="user_address" required/>
+		<input type="textarea" name="user_address" + '<?php echo $i; ?>' required/>
 		<br/>
 
-    Email Address:<input type="email" name="user_email" required/>
+    Email Address:<input type="email" name="user_email" + '<?php echo $i; ?>' required/>
         <br/>
-    Confirm Email:<input type="email" name="user_re-email" required/>
+    Confirm Email:<input type="email" name="user_re-email" + '<?php echo $i; ?>' required/>
         <br/>
 
-	Home Phone:<input type="text" name="user_homephone" required/>
+	Home Phone:<input type="text" name="user_homephone" + '<?php echo $i; ?>' required/>
 		<br/>
-	Mobile Phone:<input type="text" name="user_mobilephone" required/>
+	Mobile Phone:<input type="text" name="user_mobilephone" + '<?php echo $i; ?>' required/>
 		<br/>
 
 
 </fieldset>
-
+<?php } ?>
 <input type="submit" value="Continue"/>
 </form>
 

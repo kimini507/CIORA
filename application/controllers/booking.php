@@ -17,6 +17,7 @@ class Booking extends CI_Controller {
         switch($functionName)
         {
             case "step1":
+                $this->load->view('includes/header');
                 $this->load->view('user_information_view');
                 break;
             case "step2":
