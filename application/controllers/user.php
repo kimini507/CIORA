@@ -110,7 +110,8 @@ $this->user_model->add_flight(["flight_id"=>"IDNO07",
 										"destination"=>	$_POST['destination'],
 										"origin"=>$_POST['origin'],
 										"time_departure"=> $this->convert_datetime_format($_POST['departure_time']),
-										"time_arrival"=> $this->convert_datetime_format($_POST['departure_time'])
+										"time_arrival"=> $this->convert_datetime_format($_POST['departure_time']),
+                                        "fare" => $_POST['fare']
 										]);
 		$_SESSION["status"] = "none";
 		redirect("../viewer/add_flight_view");

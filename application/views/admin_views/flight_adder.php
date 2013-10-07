@@ -83,7 +83,7 @@ function validate_time () {
 				<br/>
 			
 				Slot:
-				<input type="number" name="slot" min="0" max="150" required>
+				<input type="number" name="slot" value = "0" min="0" max="150" required>
 				<span name="help_slot"></span>
 				<br/>
 			
@@ -124,7 +124,7 @@ function validate_time () {
 				<span name="help_arrival_time"></span>
 				<br/>
 				Fare:
-				<input type="number" name="fare" min="0" max="999999" required>
+				<input type="number" name="fare" value = "0" min="0" max="999999" required>
 				<span name="help_fare"></span>
 				<br/>
 				

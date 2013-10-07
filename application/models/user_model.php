@@ -48,7 +48,7 @@ class User_model extends CI_Model{
     							$flight['origin'] . "', 
     							TO_TIMESTAMP('" . $flight['time_departure'] . "', 'YYYY-MM-DD HH24:MI'),
     							TO_TIMESTAMP('" . $flight['time_arrival'] . "', 'YYYY-MM-DD HH24:MI')," .
-    							"'NV')");
+    							"'NV',". $flight['fare'] .")");
     }
 
     function update_flight($flight){
